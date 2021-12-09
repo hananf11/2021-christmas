@@ -3,7 +3,7 @@ export default {
   target: 'static',
 
   router: {
-    base: '/<repository-name>/'
+    base: '/2021-christmas/'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -19,7 +19,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/2021-christmas/santa.svg' }
     ]
   },
 
@@ -48,5 +48,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+    extend: (config) => {
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'));
+
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/;
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['babel-loader', 'vue-svg-loader'],
+      });
+    },
+  },
 }

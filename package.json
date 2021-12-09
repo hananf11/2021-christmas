@@ -10,6 +10,8 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "@fontsource/caveat": "^4.5.0",
+    "@fontsource/spirax": "^4.5.0",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7"
   },
@@ -18,6 +20,8 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "postcss": "^8.3.5",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "vue-svg-loader": "^0.16.0",
+    "vue-template-compiler": "^2.6.14"
   }
 }
