@@ -4,17 +4,15 @@
       <santa-svg height="200px" />
     </div>
     <div id="title" class="card-part">
-      <h2>Merry Christmas</h2>
+      <h2>{{ not ? 'Not so' : '' }} Merry Christmas</h2>
     </div>
     <div id="message" class="card-part">
       <slot />
-      <!-- {{ message }} -->
     </div>
     <div id="from" class="card-part">
-      {{ from }}
+      {{ credit }}
     </div>
   </div>
-  <!-- <Tutorial/> -->
 </template>
 
 <script lang="ts">
@@ -27,7 +25,29 @@ export default Vue.extend({
   components: {
     SantaSvg
   },
-  props: ['message', 'from']
+  props: ['message', 'not'],
+  data: () => {
+
+    return {
+      credit: ''
+    }
+  },
+  mounted() {
+    const options = [
+        'From the amazing ',
+        'From ',
+        'Made with extreme rush by ',
+        'Made with JavaScript by ',
+        'The first ever finished project by ',
+        'The only un-un-finished project by ',
+        'Made in a day by ',
+        'Made with magic by ',
+        'Cobbled together by ',
+        'Made with Hanan by '
+      ]
+    // credit: options[Math.floor(Math.random() * options.length)] + 'Hanan'
+    this.credit = options[Math.floor(Math.random() * options.length)] + 'Hanan'
+  }
 })
 </script>
 
@@ -76,7 +96,6 @@ svg {
 }
 
 .card-part {
-  @apply z-10;
   @apply rounded-lg;
   @apply block;
   @apply w-full;
@@ -92,10 +111,18 @@ svg {
   @apply text-center;
   @apply shadow-xl;
   font-family: "Spirax";
+  @apply z-20;
 }
 
 #message {
   @apply bg-white;
+  @apply -mt-3;
+  @apply z-10;
+}
+
+#from {
+  @apply bg-red-400;
+  @apply pb-2;
   @apply -mt-3;
 }
 </style>
